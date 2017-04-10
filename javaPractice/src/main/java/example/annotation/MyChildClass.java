@@ -14,18 +14,18 @@ public class MyChildClass extends MyParentClass {
      * @deprecated do not use this method anymore
      */
     @Deprecated
-    public void anyMethodHere(){
+    public void anyMethodHere() {
         System.out.println("This is depricated method");
     }
 
-    public static void main(String args[]){
+    public static void main(String args[]) {
         MyChildClass myChildClass = new MyChildClass();
         myChildClass.justaMethod();
         myChildClass.anyMethodHere();
     }
 
     @SuppressWarnings("deprecation")
-    public void suppWarning(){
+    public void suppWarning() {
         anyMethodHere();
     }
 }
