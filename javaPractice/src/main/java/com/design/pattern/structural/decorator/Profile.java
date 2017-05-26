@@ -1,4 +1,4 @@
-package com.design.patern.structural.decorator;
+package com.design.pattern.structural.decorator;
 
 /**
  * Created by mb00549 on 5/10/2017.

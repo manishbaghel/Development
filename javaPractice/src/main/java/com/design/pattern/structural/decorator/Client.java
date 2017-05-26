@@ -1,4 +1,4 @@
-package com.design.patern.structural.decorator;
+package com.design.pattern.structural.decorator;
 
 /**
  * Created by mb00549 on 5/10/2017.
@@ -13,15 +13,14 @@ public class Client
         Profile seniorEmployeeProfile = new SeniorEmployeeProfile("Bill", "bill@microsoftt.com",
                 "yale", 8, "microsoft");
 
-        studentProfile = new CollegeInfoProfilePrinterDecorator(studentProfile);
-        studentProfile.printProfile();
+//        studentProfile = new CollegeInfoProfilePrinterDecorator(studentProfile);
+//        studentProfile.printProfile();
 
-        fresherProfile = new CollegeInfoProfilePrinterDecorator(
-                new CompanyInfoProfilePrinterDecorator(fresherProfile));
+        fresherProfile = new CollegeInfoProfilePrinterDecorator( new CompanyInfoProfilePrinterDecorator(fresherProfile));
         fresherProfile.printProfile();
 
-        seniorEmployeeProfile = new CompanyInfoProfilePrinterDecorator(seniorEmployeeProfile);
-        seniorEmployeeProfile.printProfile();
+//        seniorEmployeeProfile = new CompanyInfoProfilePrinterDecorator(seniorEmployeeProfile);
+//        seniorEmployeeProfile.printProfile();
 
     }
 }
