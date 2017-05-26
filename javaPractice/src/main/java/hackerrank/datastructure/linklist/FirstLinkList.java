@@ -16,7 +16,22 @@ public class FirstLinkList {
         }
     }
 
-    Node Insert(Node head,int data) {
+    Node InsertAtEnd(Node head,int data) {
+        Node tail = new Node();
+        tail.data = data;
+
+        if(head == null){
+            head = tail;
+        }else{
+            while(head!=null){
+                head = head.next;
+            }
+            head = tail;
+        }
+        return tail;
+    }
+
+    Node InsertAtBegining(Node head,int data) {
         Node tail = new Node();
         tail.data = data;
 
