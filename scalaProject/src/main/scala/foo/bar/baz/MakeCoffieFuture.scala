@@ -3,24 +3,23 @@ package foo.bar.baz
 /**
   * Created by mb00549 on 5/25/2017.
   */
-import scala.concurrent.future
-import scala.concurrent.Future
+
 import scala.concurrent.ExecutionContext.Implicits.global
-import scala.concurrent.duration._
+import scala.concurrent.{Future, Promise}
 import scala.util.{Failure, Random, Success}
-import foo.bar.baz.MakeCoffie._
 
 
+case class Water(temperature: Int)
 
 class MakeCoffieFuture {
 
   type CoffeeBeans = String
   type GroundCoffee = String
-  case class Water(temperature: Int)
   type Milk = String
   type FrothedMilk = String
   type Espresso = String
   type Cappuccino = String
+
 
   case class GrindingException(msg: String) extends Exception(msg)
   case class FrothingException(msg: String) extends Exception(msg)
@@ -58,19 +57,29 @@ class MakeCoffieFuture {
 }
 
 object MakeCoffieFuture extends App {
-  val makeCoffie :MakeCoffieFuture = new MakeCoffieFuture
+  val makeCoffieFuture :MakeCoffieFuture = new MakeCoffieFuture
 
-//  Handling future call back
-  makeCoffie.grind("Coffee Bean").onSuccess {
+/*//  Handling future call back
+  makeCoffieFuture.grind("Coffee Bean").onSuccess {
     case ground =>println("okay, got my ground coffee")
   }
 
   // Better way to handle future call back
-  makeCoffie.grind("baked beans").onComplete {
+  makeCoffieFuture.grind("baked beans").onComplete {
     case Success(ground) => println(s"got my $ground")
     case Failure(ex) => println("This grinder needs a replacement, seriously!")
+  }*/
+
+
+//  Mapping the future
+
+//  When you are writing the function you pass to map, you’re in the future, or rather in a possible future.
+
+  val temperatureOkay: Future[Boolean] = makeCoffieFuture.heatWater(Water(22)).map { water =>
+    println("we're in the future!")
+    (80 to 85).contains(water.temperature)
   }
   Thread.sleep(Random.nextInt(2000))
 
-
 }
+
